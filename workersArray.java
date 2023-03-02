@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.DoubleStream;
 
 public class workersArray {
 
@@ -20,23 +23,25 @@ public class workersArray {
         return copyWorkers;
     }
 
-    
-
     static void printWorkers(Worker[] workers) {
         int i = 0;
         for (i = 0; i < workers.length; i++) {
             System.out.println(workers[i]);
         }
+        System.out.println();
+
         if (i == 0) {
             System.out.println("there are no workors");
         }
     }
 
-    static Worker[] removeWorker(int index, Worker[] workers) {
+    public static Worker[] removeWorker(int index, Worker[] workers) {
         int counter = 0;
         Worker[] copyWorkers = new Worker[workers.length - 1];
         if (index < 0) {
             System.out.println("cant find workor");
+            System.out.println();
+
             return workers;
         }
         for (int i = 0; i < workers.length; i++) {

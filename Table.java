@@ -4,6 +4,8 @@ public class Table {
     private int seats;
     private boolean occupied;
     private int tableNumber;
+    Waiter waiter;
+    Bill bill;
 
     public Table(int seats, int tableNumber) {
         this.seats = seats;
@@ -16,6 +18,22 @@ public class Table {
 
     public void setOccupied(boolean occupied) {
         this.occupied = occupied;
+    }
+
+    public Waiter getWaiter() {
+        return waiter;
+    }
+
+    public void setWaiter(Waiter waiter) {
+        this.waiter = waiter;
+    }
+
+    public Bill getBill() {
+        return bill;
+    }
+
+    public void setBill(Bill bill) {
+        this.bill = bill;
     }
 
     public static void main(String[] args) {
@@ -33,7 +51,7 @@ public class Table {
     public String toString() {
         String setUp = "+--------------------------------------------+";
         String availeble = occupied ? "is ocupied" : "is availeble";
-        return setUp+"\n| Table [seats=" + seats + "," + availeble + ", tableNumber=" + tableNumber + "]|\n"+setUp;
+        return setUp + "\n| Table [seats=" + seats + "," + availeble + ", tableNumber=" + tableNumber + "]|\n" + setUp;
     }
-   
+
 }

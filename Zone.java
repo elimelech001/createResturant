@@ -13,6 +13,8 @@ public class Zone {
     public void setTable() {
         Scanner in = new Scanner(System.in);
         System.out.println("enter how many seats are in the table");
+        System.out.println();
+
         int seats = in.nextInt();
         int index = 0;
         Table table;
@@ -21,11 +23,13 @@ public class Zone {
             addTable(table);
             System.out.println("enter 0 to exit");
             System.out.println("enter how many seats are in the next table");
+            System.out.println();
+
             seats = in.nextInt();
         }
     }
 
-    void costomers(){
+    void costomers() {
         Scanner in = new Scanner(System.in);
         int num = -1;
         while (num != 0) {
@@ -33,10 +37,10 @@ public class Zone {
             if (num == 1) {
                 costemerEnterd();
             } else if (num == 2) {
-              costemerLeaving();
+                costemerLeaving();
             } else if (num == 3) {
-               tableMap();
-            } 
+                tableMap();
+            }
             System.out.println("press 0 to exit");
             System.out.println("press 1 if a costomer enterd");
             System.out.println("press 2 if a costomer left");
@@ -68,9 +72,12 @@ public class Zone {
         int peopleAmount = in.nextInt();
         if (allTablesOcupied(peopleAmount)) {
             System.out.println("sorry there is no table that can fit this guest");
+            System.out.println();
             return false;
         }
         System.out.println("pick a table");
+        System.out.println();
+
         tableMap();
         int tableNum = in.nextInt();
         while (!findTable(tableNum)) {
@@ -78,6 +85,7 @@ public class Zone {
             tableNum = in.nextInt();
         }
         System.out.println("your table was chosen succesfuly");
+        System.out.println();
         tableMap();
         return true;
     }
@@ -95,6 +103,7 @@ public class Zone {
         for (int i = 0; i < tables.length; i++) {
             System.out.println(tables[i]);
         }
+        System.out.println();
     }
 
     boolean allTablesOcupied(int peopleAmount) {
@@ -117,9 +126,23 @@ public class Zone {
         return false;
     }
 
+    void waiterToTable(Waiter waiter, int tableNum) {
+        tables[tableNum].setWaiter(waiter);
+    }
+
+    void billToTable(Bill bill, int tableNum) {
+        tables[tableNum].setBill(bill);
+    }
+
+    void removeBill(Bill bill, int tableNum) {
+        tables[tableNum].setBill(null);
+    }
+
     void leaveTable(int tableNum) {
         tables[tableNum].setOccupied(false);
         System.out.println("costomer left succefuly");
+        System.out.println();
+
     }
 
     public static void main(String[] args) {

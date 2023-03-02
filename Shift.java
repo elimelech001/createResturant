@@ -43,6 +43,8 @@ public class Shift {
         int tz;
         int index;
         System.out.println("here are the general workors");
+        System.out.println();
+
         workersArray.printWorkers(allWorkers);
         System.out.println("please give me a workor according to a tz");
         tz = in.nextInt();
@@ -63,11 +65,18 @@ public class Shift {
         int index;
         workersArray.printWorkers(shiftWorkers);
         System.out.println("pick a worker according to teudat zehut");
+        System.out.println();
         tz = in.nextInt();
         index = workersArray.getWorkerIndexByTZ(tz, shiftWorkers);
         shiftWorkers = workersArray.removeWorker(index, shiftWorkers);
         System.out.println("here are the shift workors");
+        System.out.println();
         workersArray.printWorkers(shiftWorkers);
+    }
+
+    void waiterToTable(Table[] tables) {
+        workersArray.getWorkerIndexByTZ(2, shiftWorkers);
+        
     }
 
     public boolean enoughWOrkors() {
@@ -86,13 +95,16 @@ public class Shift {
             return true;
         } else {
             if (cooks > 0) {
-                System.out.println("your missing " + (Math.abs(cooks)) + "cheffs");
+                System.out.println("your missing " + (Math.abs(cooks)) + " cheffs");
+
             }
             if (waiters > 0) {
-                System.out.println("your missing " + (Math.abs(waiters)) + "waiters");
+                System.out.println("your missing " + (Math.abs(waiters)) + " waiters");
+
             }
             if (hostess > 0) {
-                System.out.println("your missing " + (Math.abs(hostess)) + "hosteess");
+                System.out.println("your missing " + (Math.abs(hostess)) + " hosteess");
+
             }
             return false;
         }
