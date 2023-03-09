@@ -5,7 +5,7 @@ public class Dishes {
     ArrayList<Dish> dishes = new ArrayList<Dish>();
 
     public Dishes() {
-
+        manageDishes();
     }
 
     public void manageDishes() {
@@ -14,9 +14,9 @@ public class Dishes {
         while (num != 0) {
 
             if (num == 1) {
-                addDish(null);
+                addDish();
             } else if (num == 2) {
-                removeDish(null);
+                removeDish();
             } else if (num == 3) {
                 printDishes();
             }
@@ -46,8 +46,20 @@ public class Dishes {
         return dish;
     }
 
-    void removeDish(Dish dish) {
-        dishes.remove(dish);
+    void removeDish() {
+        ;
+        int index = IndexFromDish();
+        dishes.remove(index);
+    }
+
+    public int IndexFromDish() {
+        Scanner in = new Scanner(System.in);
+        int index;
+        printDishes();
+        System.out.println("pick a index");
+        index = in.nextInt();
+        return index;
+
     }
 
     public void printDishes() {
@@ -58,5 +70,10 @@ public class Dishes {
 
     public ArrayList<Dish> getDishes() {
         return dishes;
+    }
+
+    public static void main(String[] args) {
+        Dishes foo = new Dishes();
+
     }
 }
