@@ -1,30 +1,31 @@
 import java.util.Scanner;
 
 public class Shift {
-
+    Worker[] allWorkers;
     Worker[] shiftWorkers;
     int workersIndex;
     int cooks = 2;
     int waiters = 3;
     int hostess = 1;
 
-    public Shift(Worker[] allWorkers) {
+    public Shift(GeneralWorkers generalWorkers) {
         shiftWorkers = new Worker[0];
-        startShift(allWorkers);
+        this.allWorkers = generalWorkers.getWorkers();
+        startShift();
     }
 
-    void startShift(Worker[] allWorkers) {
-        while (!enoughWOrkors()) {
-            addWorkersFromGeneral(allWorkers);
+    void startShift() {
+        while (!enoughWorkers()) {
+            addWorkersFromGeneral();
         }
     }
 
-    public void manageShift(Worker[] allWorkers) {
+    public void manageShift() {
         Scanner in = new Scanner(System.in);
         int num = -1;
         while (num != 0) {
             if (num == 1) {
-                addWorkersFromGeneral(allWorkers);
+                addWorkersFromGeneral();
             } else if (num == 2) {
                 removeWorker();
             } else if (num == 3) {
@@ -38,7 +39,7 @@ public class Shift {
         }
     }
 
-    public void addWorkersFromGeneral(Worker[] allWorkers) {
+    public void addWorkersFromGeneral() {
         Scanner in = new Scanner(System.in);
         int tz;
         int index;
@@ -76,10 +77,10 @@ public class Shift {
 
     void waiterToTable(Table[] tables) {
         workersArray.getWorkerIndexByTZ(2, shiftWorkers);
-        
+
     }
 
-    public boolean enoughWOrkors() {
+    public boolean enoughWorkers() {
         for (int i = 0; i < shiftWorkers.length; i++) {
             if (shiftWorkers[i] instanceof Waiter) {
                 waiters--;
@@ -113,8 +114,8 @@ public class Shift {
 
     public static void main(String[] args) {
         GeneralWorkers generalWorkers = new GeneralWorkers();
-        Shift shift = new Shift(generalWorkers.getWorkers());
-        shift.manageShift(generalWorkers.getWorkers());
+        Shift shift = new Shift(generalWorkers);
+        shift.manageShift();
 
     }
 }

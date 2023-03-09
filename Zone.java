@@ -3,10 +3,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Zone {
-    Table[] tables;
+    // Table[] tables;
+    ArrayList<Table> tables = new ArrayList<Table>();
+    Dishes allDishes;
 
-    public Zone() {
-        tables = new Table[0];
+    public Zone(Dishes dishes) {
+        allDishes = dishes;
         setTable();
     }
 
@@ -20,7 +22,7 @@ public class Zone {
         Table table;
         while (seats > 0) {
             table = new Table(seats, index++);
-            addTable(table);
+            tables.add(table);
             System.out.println("enter 0 to exit");
             System.out.println("enter how many seats are in the next table");
             System.out.println();
@@ -37,31 +39,25 @@ public class Zone {
             if (num == 1) {
                 costemerEnterd();
             } else if (num == 2) {
-                costemerLeaving();
+                addDish();
             } else if (num == 3) {
+                costemerLeaving();
+            } else if (num == 4) {
                 tableMap();
             }
             System.out.println("press 0 to exit");
             System.out.println("press 1 if a costomer enterd");
-            System.out.println("press 2 if a costomer left");
-            System.out.println("press 3 to view all tables");
+            System.out.println("press 2 to add a dish");
+            System.out.println("press 3 if a costomer left");
+            System.out.println("press 4 to view all tables");
             num = in.nextInt();
         }
     }
 
-    void addTable(Table table) {
-        Table[] copyTables = new Table[tables.length + 1];
-        for (int i = 0; i < tables.length; i++) {
-            copyTables[i] = tables[i];
-        }
-        copyTables[tables.length] = table;
-        tables = copyTables;
-    }
-
     public Table[] getTables() {
-        Table[] copyTable = new Table[tables.length];
-        for (int i = 0; i < tables.length; i++) {
-            copyTable[i] = tables[i];
+        Table[] copyTable = new Table[tables.size()];
+        for (int i = 0; i < tables.size(); i++) {
+            copyTable[i] = tables.get(i);
         }
         return copyTable;
     }
@@ -79,74 +75,94 @@ public class Zone {
         System.out.println();
 
         tableMap();
-        int tableNum = in.nextInt();
-        while (!findTable(tableNum)) {
+
+        while (!findTable(peopleAmount)) {
             System.out.println("please pick another table");
-            tableNum = in.nextInt();
         }
         System.out.println("your table was chosen succesfuly");
-        System.out.println();
         tableMap();
         return true;
     }
 
-    void costemerLeaving() {
-        ;
-        Scanner in = new Scanner(System.in);
-        tableMap();
-        System.out.println("please enter the number table");
-        int tableNum = in.nextInt();
-        leaveTable(tableNum);
-    }
-
     void tableMap() {
-        for (int i = 0; i < tables.length; i++) {
-            System.out.println(tables[i]);
+        for (int i = 0; i < tables.size(); i++) {
+
+            System.out.println(tables.get(i));
+
         }
         System.out.println();
     }
 
     boolean allTablesOcupied(int peopleAmount) {
-        for (int i = 0; i < tables.length; i++) {
-            if (!tables[i].isOccupied() && tables[i].getSeats() >= peopleAmount) {
+        for (int i = 0; i < tables.size(); i++) {
+            if (!tables.get(i).isOccupied() && tables.get(i).getSeats() >= peopleAmount) {
                 return false;
             }
         }
         return true;
     }
 
-    boolean findTable(int tableNum) {
-        if (tableNum < 0 || tableNum >= tables.length) {
+    boolean findTable(int peopleAmount) {
+        Bill bill;
+        int tableNum = getTableNum();
+        if (tableNum == -1) {
             return false;
         }
-        if (!tables[tableNum].isOccupied()) {
-            tables[tableNum].setOccupied(true);
+
+        if (!tables.get(tableNum).isOccupied() && tables.get(tableNum).getSeats() >= peopleAmount) {
+            bill = new Bill(allDishes);
+            tables.get(tableNum).setOccupied(true);
+            tables.get(tableNum).setBill(bill);
             return true;
         }
         return false;
     }
 
+    int getTableNum() {
+        Scanner in = new Scanner(System.in);
+        int index;
+        tableMap();
+        System.out.println("pick a table number");
+        index = in.nextInt();
+        if (index > 0 && index <= tables.size()) {
+            return index;
+        }
+        System.out.println("index not found");
+        return -1;
+    }
+
     void waiterToTable(Waiter waiter, int tableNum) {
-        tables[tableNum].setWaiter(waiter);
+        tables.get(tableNum).setWaiter(waiter);
     }
 
-    void billToTable(Bill bill, int tableNum) {
-        tables[tableNum].setBill(bill);
+    void removeBill(int tableNum) {
+        tables.get(tableNum).setBill(null);
     }
 
-    void removeBill(Bill bill, int tableNum) {
-        tables[tableNum].setBill(null);
+    void addDish() {
+        int tableNum = getTableNum();
+        if (tableNum != -1) {
+            tables.get(tableNum).getBill().addDish();
+        }
+
     }
 
-    void leaveTable(int tableNum) {
-        tables[tableNum].setOccupied(false);
+    void costemerLeaving() {
+        int tableNum = getTableNum();
+        if (tableNum == -1 || !tables.get(tableNum).isOccupied())
+            return;
+        tables.get(tableNum).setOccupied(false);
+        System.out.println(tables.get(tableNum).getBill());
+        removeBill(tableNum);
         System.out.println("costomer left succefuly");
         System.out.println();
 
     }
 
     public static void main(String[] args) {
-        Zone foo = new Zone();
+        Dishes dishes = new Dishes();
+
+        Zone foo = new Zone(dishes);
         foo.costomers();
 
     }
