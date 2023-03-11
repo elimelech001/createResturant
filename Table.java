@@ -4,8 +4,8 @@ public class Table {
     private int seats;
     private boolean occupied;
     private int tableNumber;
-    Waiter waiter;
-    Bill bill;
+    private Waiter waiter;
+    private Bill bill;
 
     public Table(int seats, int tableNumber) {
         this.seats = seats;
@@ -36,12 +36,7 @@ public class Table {
         this.bill = bill;
     }
 
-    public static void main(String[] args) {
-        Table table = new Table(1, 2);
-        System.out.println(table.toString());
-        System.out.print(table.toString());
-
-    }
+   
 
     public int getSeats() {
         return seats;

@@ -49,11 +49,11 @@ public class Dishes {
 
     void removeDish() {
         ;
-        int index = IndexFromDish();
+        int index = IndexOfDish();
         dishes.remove(index);
     }
 
-    public int IndexFromDish() {
+    public int IndexOfDish() {
         Scanner in = new Scanner(System.in);
         int index;
         printDishes();
@@ -73,8 +73,5 @@ public class Dishes {
         return dishes;
     }
 
-    public static void main(String[] args) {
-        Dishes foo = new Dishes();
-
-    }
+    
 }

@@ -6,7 +6,7 @@ import java.util.Scanner;
  */
 public class Bill {
     ArrayList<Dish> dishes = new ArrayList<Dish>();
-    double tipPercent = 10;
+    int tipPercent = 10;
     Dishes allDishes;
     
 
@@ -19,7 +19,7 @@ public class Bill {
     }
 
     public void addDish() {
-       int index= allDishes.IndexFromDish();
+       int index= allDishes.IndexOfDish();
        dishes.add(allDishes.getDishes().get(index));
 
     }
@@ -29,7 +29,7 @@ public class Bill {
     }
 
     public double getTip() {
-        return dishesSum() * (tipPercent / 100);
+        return dishesSum() * ((double)tipPercent / 100);
     }
 
     public double dishesSum() {
@@ -58,7 +58,7 @@ public class Bill {
 
     @Override
     public String toString() {
-        return "Bill [dishes=\n" + disheString() + ",\n tip=" + getTip() + "\n total " + total() + "";
+        return "Bill \n dishes=\n" + disheString() + ",\n tip=" + getTip() + "\n total " + total() + "";
     }
 
 }

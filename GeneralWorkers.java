@@ -8,7 +8,7 @@ public class GeneralWorkers {
         setWorkers();
     }
 
-    void manageWorkors() {
+   public void manageWorkors() {
         Scanner in = new Scanner(System.in);
         int num = -1;
         while (num != 0) {
@@ -28,7 +28,7 @@ public class GeneralWorkers {
         }
     }
 
-    public void setWorkers() {
+    private void setWorkers() {
         Scanner in = new Scanner(System.in);
         Worker worker;
         int num = -1;
@@ -102,8 +102,5 @@ public class GeneralWorkers {
         
     }
 
-    public static void main(String[] args) {
-        GeneralWorkers foo = new GeneralWorkers();
-        foo.manageWorkors();
-    }
+    
 }
