@@ -19,6 +19,7 @@ public class GeneralWorkers {
             } else if (num == 3) {
                 workersArray.printWorkers(workers);
             }
+            System.out.println("GENERAL WORKORS");
             System.out.println("press 0 to exit");
             System.out.println("press 1 if you want to add workers");
             System.out.println("press 2 if you want to remove workors");
@@ -53,6 +54,7 @@ public class GeneralWorkers {
             } else if (num == 5) {
                 workersArray.printWorkers(workers);
             }
+            System.out.println("GENERAL WORKORS");
             System.out.println("press 0 to exit");
             System.out.println("press 1 if you want to add a shiftmanager");
             System.out.println("press 2 if you want to add a waiter");

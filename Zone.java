@@ -45,6 +45,8 @@ public class Zone {
             } else if (num == 4) {
                 tableMap();
             }
+
+            System.out.println("ZONE");
             System.out.println("press 0 to exit");
             System.out.println("press 1 if a costomer enterd");
             System.out.println("press 2 to add a dish");

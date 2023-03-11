@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
 public class Resturant {
-    // array of tables
     GeneralWorkers generalWorkers;
     Zone zone;
     Shift shift;
@@ -15,10 +14,10 @@ public class Resturant {
         manage();
     }
 
-    void manage() {
+    private void manage() {
         Scanner in = new Scanner(System.in);
         int num = -1;
-        while (num != 0) {
+        while (true) {
 
             if (num == 1) {
                 generalWorkers.manageWorkors();
@@ -29,8 +28,7 @@ public class Resturant {
             } else if (num == 4) {
                 zone.costomers();
             }
-            System.out.println("press 0 to exit");
-            System.out.println("press 1 if to manage general workors");
+            System.out.println("press 1 to manage general workors");
             System.out.println("press 2 to manage dishes");
             System.out.println("press 3 to manage shift");
             System.out.println("press 4 to handle costemers");

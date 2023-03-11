@@ -20,6 +20,7 @@ public class Dishes {
             } else if (num == 3) {
                 printDishes();
             }
+            System.out.println("DISHES");
             System.out.println("press 0 to exit");
             System.out.println("press 1  to add a dish");
             System.out.println("press 2 to remove a dish");

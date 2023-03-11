@@ -31,6 +31,7 @@ public class Shift {
             } else if (num == 3) {
                 workersArray.printWorkers(shiftWorkers);
             }
+            System.out.println("sHIFT");
             System.out.println("press 0 to exit");
             System.out.println("press 1 if you want to add workers");
             System.out.println("press 2 if you want to remove workors");
