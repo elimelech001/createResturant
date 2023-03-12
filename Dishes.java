@@ -70,7 +70,7 @@ public class Dishes {
     }
 
     public ArrayList<Dish> getDishes() {
-        return dishes;
+        return (ArrayList<Dish>) dishes.clone();
     }
 
     

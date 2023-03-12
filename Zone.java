@@ -56,12 +56,8 @@ public class Zone {
         }
     }
 
-    public Table[] getTables() {
-        Table[] copyTable = new Table[tables.size()];
-        for (int i = 0; i < tables.size(); i++) {
-            copyTable[i] = tables.get(i);
-        }
-        return copyTable;
+    public ArrayList<Table> getTables() {
+        return (ArrayList<Table>) tables.clone();
     }
 
     boolean costemerEnterd() {

@@ -10,7 +10,7 @@ public class Resturant {
         generalWorkers = new GeneralWorkers();
         dishes = new Dishes();
         zone = new Zone(dishes);
-        shift = new Shift(generalWorkers);
+        shift = new Shift(generalWorkers, zone);
         manage();
     }
 
@@ -25,7 +25,7 @@ public class Resturant {
             } else if (num == 3) {
                 shift.manageShift();
             } else if (num == 4) {
-                shift = new Shift(generalWorkers);
+                shift = new Shift(generalWorkers,zone);
 
             } else if (num == 5) {
                 zone.costomers();
@@ -40,6 +40,7 @@ public class Resturant {
             System.out.println("press 4 to change a shift");
             System.out.println("press 5 to handle costemers");
             num = in.nextInt();
+            in.close();
         }
-    }
+        }
 }

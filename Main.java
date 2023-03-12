@@ -20,10 +20,6 @@ public class Main {
     // 4) need to offer a recipt for every table
     // 4.1) show the bill;
    public static void main(String[] args) {
-    System.out.println("---------------------------------");
-    System.out.println("           RESTURANT             ");
-    System.out.println("---------------------------------");
-    
-    
+    Resturant resturant = new Resturant();   
    }
 }

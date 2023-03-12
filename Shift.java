@@ -1,16 +1,19 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Shift {
     Worker[] allWorkers;
     Worker[] shiftWorkers;
+    Zone zone;
     int workersIndex;
     int cooks = 2;
     int waiters = 3;
     int hostess = 1;
 
-    public Shift(GeneralWorkers generalWorkers) {
+    public Shift(GeneralWorkers generalWorkers, Zone zone) {
         shiftWorkers = new Worker[0];
         this.allWorkers = generalWorkers.getWorkers();
+        this.zone = zone;
         startShift();
     }
 
@@ -59,6 +62,11 @@ public class Shift {
         System.out.println("here are the shift workors");
         workersArray.printWorkers(shiftWorkers);
 
+    }
+
+    public void waiterToTable(Waiter waiter) {
+
+        zone.tables.get(zone.getTableNum()).setWaiter(waiter);
     }
 
     public void removeWorker() {
@@ -113,10 +121,4 @@ public class Shift {
 
     }
 
-    public static void main(String[] args) {
-        GeneralWorkers generalWorkers = new GeneralWorkers();
-        Shift shift = new Shift(generalWorkers);
-        shift.manageShift();
-
-    }
 }
